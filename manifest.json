@@ -7,12 +7,12 @@
     "description": "Apply CameraCapture",
     "icons": [
         {
-            "src": "/assets/img/favicon.png",
+            "src": "./assets/img/favicon.png",
             "sizes": "32x32",
             "type": "image/png"
         },
         {
-            "src": "/assets/img/apple-touch-icon.png",
+            "src": "./assets/img/apple-touch-icon.png",
             "sizes": "180x180",
             "type": "image/png"
         }
