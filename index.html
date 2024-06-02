@@ -24,7 +24,11 @@
     document.getElementById('snap').addEventListener('click', function() {
         var canvas = document.getElementById('canvas');
         var context = canvas.getContext('2d');
-        context.drawImage(video, 0, 0, 640, 480);
+
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+
+        context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
     });
 </script>
 
