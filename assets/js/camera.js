@@ -27,8 +27,6 @@ function takePhoto() {
         canvas.height = video.videoHeight;
     
         context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
-
-        isMetaDataLoaded = false;
     } else {
         console.log("Failed to get video size");
     }
