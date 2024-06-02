@@ -39,6 +39,23 @@
         downloadLink.href = dataURL;
         downloadLink.style.display = 'block'; // Show the download link
     });
+
+    // Full Screeen
+    function openFullscreen() {
+        if (document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen();
+        } else if (document.documentElement.mozRequestFullScreen) { /* Firefox */
+          document.documentElement.mozRequestFullScreen();
+        } else if (document.documentElement.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+          document.documentElement.webkitRequestFullscreen();
+        } else if (document.documentElement.msRequestFullscreen) { /* IE/Edge */
+          document.documentElement.msRequestFullscreen();
+        }
+    }
+
+    window.onload = function() {
+        openFullscreen();
+    }
 </script>
 
 </body>
