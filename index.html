@@ -6,7 +6,6 @@
 
 <video id="video" width="640" height="480" autoplay></video>
 <canvas id="canvas" width="640" height="480"></canvas>
-<a id="download" download="photo.png">Download Photo</a>
 
 <script>
     // Get the video stream
@@ -21,7 +20,7 @@
     });
 
     // Function to take the photo
-    function takePhoto() {
+    function takePhotoAndDownload() {
         var canvas = document.getElementById('canvas');
         var context = canvas.getContext('2d');
         var video = document.getElementById('video');
@@ -34,16 +33,19 @@
         // Convert the canvas image to a data URL
         var dataURL = canvas.toDataURL('image/png');
 
-        // Create a download link
-        var downloadLink = document.getElementById('download');
+        // Create a temporary download link and click it
+        var downloadLink = document.createElement('a');
         downloadLink.href = dataURL;
-        downloadLink.style.display = 'block'; // Show the download link
+        downloadLink.download = 'photo.png';
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
     }
 
     // Detect touch at the top of the screen
     document.body.addEventListener('touchstart', function(event) {
         if (event.touches[0].clientY < window.innerHeight / 2) {
-            takePhoto();
+            takePhotoAndDownload();
         }
     });
 
