@@ -7,31 +7,31 @@
     background:rgba(0,0,0,0.8) ;
     
     -webkit-clip-path: polygon(
-        0% 0%, 
-        0% 100%, 
-        50% 100%, 
-        50% 50%, 
-        calc(50% - (80vh * 0.5)) 50%, 
-        calc(50% - (80vh * 0.5)) calc(50% - (60vh * 0.5)), 
-        calc(50% + (80vh * 0.5)) calc(50% - (60vh * 0.5)), 
-        calc(50% + (80vh * 0.5)) 50%, 
-        50% 50%, 
-        50% 100%, 
-        100% 100%, 
-        100% 0%
+        0vh 0vh, 
+        0vh 100vh, 
+        50vh 100vh, 
+        50vh 50vh, 
+        calc(50vh - (80vh * 0.5)) 50vh, 
+        calc(50vh - (80vh * 0.5)) calc(50vh - (60vh * 0.5)), 
+        calc(50vh + (80vh * 0.5)) calc(50vh - (60vh * 0.5)), 
+        calc(50vh + (80vh * 0.5)) 50vh, 
+        50vh 50vh, 
+        50vh 100vh, 
+        100vh 100vh, 
+        100vh 0vh
     );
     clip-path: polygon(
-        0% 0%, 
-        0% 100%, 
-        50% 100%, 
-        50% 50%, 
-        calc(50% - (80vh * 0.5)) 50%, 
-        calc(50% - (80vh * 0.5)) calc(50% - (60vh * 0.5)), 
-        calc(50% + (80vh * 0.5)) calc(50% - (60vh * 0.5)), 
-        calc(50% + (80vh * 0.5)) 50%, 
-        50% 50%, 
-        50% 100%, 
-        100% 100%, 
-        100% 0%
+        0vh 0vh, 
+        0vh 100vh, 
+        50vh 100vh, 
+        50vh 50vh, 
+        calc(50vh - (80vh * 0.5)) 50vh, 
+        calc(50vh - (80vh * 0.5)) calc(50vh - (60vh * 0.5)), 
+        calc(50vh + (80vh * 0.5)) calc(50vh - (60vh * 0.5)), 
+        calc(50vh + (80vh * 0.5)) 50vh, 
+        50vh 50vh, 
+        50vh 100vh, 
+        100vh 100vh, 
+        100vh 0vh
     );
 }
