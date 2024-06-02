@@ -1,8 +1,8 @@
 // Get the video stream
 let isMetaDataLoaded = false;
+let video = document.getElementById('video');
 navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } })
 .then(function(stream) {
-    var video = document.getElementById('video');
     video.srcObject = stream;
     video.play();
     video.onloadedmetadata = function(e) {
@@ -14,15 +14,13 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment
 });
 
 // Function to take the photo
+let canvas = document.getElementById('canvas');
+let context = canvas.getContext('2d');
 function takePhoto() {
     if (!isMetaDataLoaded) {
         console.log("The metadata for the video has not yet been loaded");
         return;
     }
-    
-    var canvas = document.getElementById('canvas');
-    var context = canvas.getContext('2d');
-    var video = document.getElementById('video');
 
     if(video.videoWidth > 0 && video.videoHeight > 0) {
         canvas.width = video.videoWidth;
@@ -36,11 +34,18 @@ function takePhoto() {
     }
 }
 
+function resetCanvas() {
+    canvas.width = 0;
+    canvas.height = 0;
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.beginPath();
+}
+
 // Function to download the photo
 function photoDownload() {
     canvas.toBlob(function(blob) {
-        var url = URL.createObjectURL(blob);
-        var downloadLink = document.createElement('a');
+        let url = URL.createObjectURL(blob);
+        let downloadLink = document.createElement('a');
         downloadLink.href = url;
         downloadLink.download = 'photo.png';
         document.body.appendChild(downloadLink);
@@ -48,6 +53,8 @@ function photoDownload() {
         document.body.removeChild(downloadLink);
         URL.revokeObjectURL(url);
     }, 'image/png');
+
+    resetCanvas();
 }
 
 // Detect touch at the bottom of the screen
