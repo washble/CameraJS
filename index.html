@@ -40,7 +40,7 @@
         downloadLink.style.display = 'block'; // Show the download link
     });
 
-    // Full Screeen
+    // Open Full Screeen
     function openFullscreen() {
         if (document.documentElement.requestFullscreen) {
           document.documentElement.requestFullscreen();
@@ -53,7 +53,20 @@
         }
     }
 
-    window.onload = function() {
+    // Close Full Screen
+    function closeFullscreen() {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) { /* Firefox */
+          document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { /* IE/Edge */
+          document.msExitFullscreen();
+        }
+    }
+
+    window.onload = () => {
         openFullscreen();
     }
 </script>
