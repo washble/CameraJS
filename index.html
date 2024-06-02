@@ -42,9 +42,9 @@
         document.body.removeChild(downloadLink);
     }
 
-    // Detect touch at the top of the screen
+    // Detect touch at the bottom of the screen
     document.body.addEventListener('touchstart', function(event) {
-        if (event.touches[0].clientY < window.innerHeight / 2) {
+        if (event.touches[0].clientY >= window.innerHeight * 0.5) {
             takePhotoAndDownload();
         }
     });
