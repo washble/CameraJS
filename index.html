@@ -72,16 +72,16 @@
 
         context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
 
-        // Convert the canvas image to a data URL
-        var dataURL = canvas.toDataURL('image/png');
-
-        // Create a temporary download link and click it
-        var downloadLink = document.createElement('a');
-        downloadLink.href = dataURL;
-        downloadLink.download = 'photo.png';
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        document.body.removeChild(downloadLink);
+        canvas.toBlob(function(blob) {
+            var url = URL.createObjectURL(blob);
+            var downloadLink = document.createElement('a');
+            downloadLink.href = url;
+            downloadLink.download = 'photo.png';
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+            URL.revokeObjectURL(url);
+        }, 'image/png');
     }
 
     // Detect touch at the top of the screen
