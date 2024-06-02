@@ -44,7 +44,7 @@ document.body.addEventListener('click', function(event) {
             touchCount++;
         } else {
             photoDownload();
-            touchCount == 0;
+            touchCount = 0;
         }
     }
 });    
