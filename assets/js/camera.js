@@ -19,7 +19,9 @@ function takePhotoAndDownload() {
     canvas.height = video.videoHeight;
 
     context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+}
 
+function PhotoDownload() {
     canvas.toBlob(function(blob) {
         var url = URL.createObjectURL(blob);
         var downloadLink = document.createElement('a');
@@ -33,9 +35,15 @@ function takePhotoAndDownload() {
 }
 
 // Detect touch at the bottom of the screen
+let touchCount = 0;
 document.body.addEventListener('click', function(event) {
     if (event.clientY > window.innerHeight * 0.5) {
-        takePhotoAndDownload();
+        if(touchCount++ == 0) {
+            takePhotoAndDownload();
+        } else {
+            PhotoDownload();
+            touchCount == 0;
+        }
     }
 });    
 
