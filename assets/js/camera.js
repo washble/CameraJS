@@ -21,6 +21,7 @@ function takePhoto() {
     context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
 }
 
+// Function to download the photo
 function photoDownload() {
     canvas.toBlob(function(blob) {
         var url = URL.createObjectURL(blob);
