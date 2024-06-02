@@ -7,6 +7,7 @@
 <video id="video" width="640" height="480" autoplay></video>
 <button id="snap">Take Photo</button>
 <canvas id="canvas" width="640" height="480"></canvas>
+<a id="download" download="photo.png">Download Photo</a>
 
 <script>
     // Get the video stream
@@ -29,6 +30,14 @@
         canvas.height = video.videoHeight;
 
         context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+
+        // Convert the canvas image to a data URL
+        var dataURL = canvas.toDataURL('image/png');
+
+        // Create a download link
+        var downloadLink = document.getElementById('download');
+        downloadLink.href = dataURL;
+        downloadLink.style.display = 'block'; // Show the download link
     });
 </script>
 
