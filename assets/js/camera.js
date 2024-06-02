@@ -10,7 +10,7 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment
 });
 
 // Function to take the photo
-function takePhotoAndDownload() {
+function takePhoto() {
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
     var video = document.getElementById('video');
@@ -21,7 +21,7 @@ function takePhotoAndDownload() {
     context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
 }
 
-function PhotoDownload() {
+function photoDownload() {
     canvas.toBlob(function(blob) {
         var url = URL.createObjectURL(blob);
         var downloadLink = document.createElement('a');
@@ -39,10 +39,10 @@ let touchCount = 0;
 document.body.addEventListener('click', function(event) {
     if (event.clientY > window.innerHeight * 0.5) {
         if(touchCount == 0) {
-            takePhotoAndDownload();
+            takePhoto();
             touchCount++;
         } else {
-            PhotoDownload();
+            photoDownload();
             touchCount == 0;
         }
     }
