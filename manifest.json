@@ -1,7 +1,7 @@
 {
     "name": "CameraCapture",
     "short_name": "CameraCapture",
-    "start_url": "/",
+    "start_url": "/CameraJS/",
     "display": "standalone",
     "background_color": "#ffffff",
     "description": "Apply CameraCapture",
