@@ -1,14 +1,19 @@
 {
-    "name": "fullscreen mode",
-    "short_name": "fullscreen",
+    "name": "CameraCapture",
+    "short_name": "CameraCapture",
     "start_url": "/",
-    "display": "fullscreen",
+    "display": "standalone",
     "background_color": "#ffffff",
-    "description": "Apply fullscreen mode",
+    "description": "Apply CameraCapture",
     "icons": [
         {
             "src": "/assets/img/favicon.png",
-            "sizes": "192x192",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/img/apple-touch-icon.png",
+            "sizes": "180x180",
             "type": "image/png"
         }
     ]
