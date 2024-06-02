@@ -35,3 +35,13 @@
         100vw 0vh
     );
 }
+
+.red-line {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80vw;
+    height: 2px;
+    background-color: red;
+    transform: translate(-50%, -50%);
+}
