@@ -32,9 +32,9 @@ function takePhotoAndDownload() {
     }, 'image/png');
 }
 
-// Detect touch at the top of the screen
+// Detect touch at the bottom of the screen
 document.body.addEventListener('click', function(event) {
-    if (event.clientY < window.innerHeight * 0.5) {
+    if (event.clientY > window.innerHeight * 0.5) {
         takePhotoAndDownload();
     }
 });    
