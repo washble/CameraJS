@@ -2,14 +2,15 @@
 <html>
 <body>
 
-<h2>Camera Capture</h2>
+<h2>Take a Photo with the Camera</h2>
 
 <video id="video" width="640" height="480" autoplay></video>
-<button id="snap">Camera Capture</button>
+<button id="snap">Take Photo</button>
 <canvas id="canvas" width="640" height="480"></canvas>
 
 <script>
-    navigator.mediaDevices.getUserMedia({ video: true })
+    // Get the video stream
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } })
     .then(function(stream) {
         var video = document.getElementById('video');
         video.srcObject = stream;
@@ -19,6 +20,7 @@
         console.log("An error occurred: " + err);
     });
 
+    // Take the photo
     document.getElementById('snap').addEventListener('click', function() {
         var canvas = document.getElementById('canvas');
         var context = canvas.getContext('2d');
