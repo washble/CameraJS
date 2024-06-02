@@ -38,8 +38,8 @@
 
 .red-line {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 50vh;
+    left: 50vw;
     width: 80vw;
     height: 1px;
     background-color: red;
