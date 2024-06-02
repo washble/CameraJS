@@ -1,9 +1,13 @@
 // Get the video stream
+let isMetaDataLoaded = false;
 navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } })
 .then(function(stream) {
     var video = document.getElementById('video');
     video.srcObject = stream;
     video.play();
+    video.onloadedmetadata = function(e) {
+        isMetaDataLoaded = true;
+    };
 })
 .catch(function(err) {
     console.log("An error occurred: " + err);
@@ -11,14 +15,25 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment
 
 // Function to take the photo
 function takePhoto() {
+    if (!isMetaDataLoaded) {
+        console.log("The metadata for the video has not yet been loaded");
+        return;
+    }
+    
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
     var video = document.getElementById('video');
 
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
+    if(video.videoWidth > 0 && video.videoHeight > 0) {
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+    
+        context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
 
-    context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+        isMetaDataLoaded = false;
+    } else {
+        console.log("Failed to get video size");
+    }
 }
 
 // Function to download the photo
