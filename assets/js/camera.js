@@ -38,8 +38,9 @@ function PhotoDownload() {
 let touchCount = 0;
 document.body.addEventListener('click', function(event) {
     if (event.clientY > window.innerHeight * 0.5) {
-        if(touchCount++ == 0) {
+        if(touchCount == 0) {
             takePhotoAndDownload();
+            touchCount++;
         } else {
             PhotoDownload();
             touchCount == 0;
