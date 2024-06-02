@@ -40,12 +40,13 @@ function resetCanvas() {
 }
 
 // Function to download the photo
+let photoCount = 0;
 function photoDownload() {
     canvas.toBlob(function(blob) {
         let url = URL.createObjectURL(blob);
         let downloadLink = document.createElement('a');
         downloadLink.href = url;
-        downloadLink.download = 'photo.png';
+        downloadLink.download = `photo${photoCount++}.png`;
         document.body.appendChild(downloadLink);
         downloadLink.click();
         document.body.removeChild(downloadLink);
