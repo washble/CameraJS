@@ -84,7 +84,7 @@ document.body.addEventListener('click', function(event) {
         isDownloading = false;
         return; 
     }
-    
+
     if (event.clientY > window.innerHeight * 0.5) {
         if(touchCount == 0) {
             takePhoto();
@@ -94,9 +94,7 @@ document.body.addEventListener('click', function(event) {
             photoDownload();
             touchCount = 0;
         }
-        console.log("click Bottom");
     } else {
-        console.log("click Top");
         const videoTrack = video.srcObject.getVideoTracks()[0];
         const capabilities = videoTrack.getCapabilities();
         if (event.clientX > window.innerWidth * 0.5 && capabilities.zoom) {
