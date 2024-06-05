@@ -1,12 +1,21 @@
 // Get the video stream
 let isMetaDataLoaded = false;
 let video = document.getElementById('video');
+let currentZoom = 1;
 navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } })
 .then(function(stream) {
     video.srcObject = stream;
     video.play();
     video.onloadedmetadata = function(e) {
         isMetaDataLoaded = true;
+        const videoTrack = stream.getVideoTracks()[0];
+        const capabilities = videoTrack.getCapabilities();
+        if (capabilities.zoom) {
+            currentZoom = capabilities.zoom.min;
+            videoTrack.applyConstraints({
+                advanced: [{zoom: currentZoom}]
+            });
+        }
     };
 })
 .catch(function(err) {
@@ -62,6 +71,19 @@ function photoDownload() {
 // Detect touch at the bottom of the screen
 let touchCount = 0;
 document.body.addEventListener('click', function(event) {
+    const videoTrack = video.srcObject.getVideoTracks()[0];
+    const capabilities = videoTrack.getCapabilities();
+    if (event.clientX > window.innerWidth * 0.5 && capabilities.zoom) {
+        currentZoom = Math.min(currentZoom + 1, capabilities.zoom.max);
+    }
+    else if (event.clientX <= window.innerWidth * 0.5 && capabilities.zoom) {
+        currentZoom = Math.max(currentZoom - 1, capabilities.zoom.min);
+    }
+    videoTrack.applyConstraints({
+        advanced: [{zoom: currentZoom}]
+    });
+
+    // 기존의 사진 촬영 또는 다운로드 로직을 실행합니다.
     if (event.clientY > window.innerHeight * 0.5) {
         if(touchCount == 0) {
             takePhoto();
@@ -71,7 +93,7 @@ document.body.addEventListener('click', function(event) {
             touchCount = 0;
         }
     }
-});    
+});  
 
 // Open Full Screeen
 function openFullscreen() {
