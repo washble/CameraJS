@@ -98,10 +98,10 @@ document.body.addEventListener('click', function(event) {
         const videoTrack = video.srcObject.getVideoTracks()[0];
         const capabilities = videoTrack.getCapabilities();
         if (event.clientX > window.innerWidth * 0.5 && capabilities.zoom) {
-            currentZoom = Math.min(currentZoom + 1, capabilities.zoom.max);
+            currentZoom = Math.min(currentZoom + 0.5, capabilities.zoom.max);
         }
         else if (event.clientX <= window.innerWidth * 0.5 && capabilities.zoom) {
-            currentZoom = Math.max(currentZoom - 1, capabilities.zoom.min);
+            currentZoom = Math.max(currentZoom - 0.5, capabilities.zoom.min);
         }
         videoTrack.applyConstraints({
             advanced: [{zoom: currentZoom}]
