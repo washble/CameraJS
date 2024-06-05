@@ -71,19 +71,6 @@ function photoDownload() {
 // Detect touch at the bottom of the screen
 let touchCount = 0;
 document.body.addEventListener('click', function(event) {
-    const videoTrack = video.srcObject.getVideoTracks()[0];
-    const capabilities = videoTrack.getCapabilities();
-    if (event.clientX > window.innerWidth * 0.5 && capabilities.zoom) {
-        currentZoom = Math.min(currentZoom + 1, capabilities.zoom.max);
-    }
-    else if (event.clientX <= window.innerWidth * 0.5 && capabilities.zoom) {
-        currentZoom = Math.max(currentZoom - 1, capabilities.zoom.min);
-    }
-    videoTrack.applyConstraints({
-        advanced: [{zoom: currentZoom}]
-    });
-
-    // 기존의 사진 촬영 또는 다운로드 로직을 실행합니다.
     if (event.clientY > window.innerHeight * 0.5) {
         if(touchCount == 0) {
             takePhoto();
@@ -92,6 +79,18 @@ document.body.addEventListener('click', function(event) {
             photoDownload();
             touchCount = 0;
         }
+    } else {
+        const videoTrack = video.srcObject.getVideoTracks()[0];
+        const capabilities = videoTrack.getCapabilities();
+        if (event.clientX > window.innerWidth * 0.5 && capabilities.zoom) {
+            currentZoom = Math.min(currentZoom + 1, capabilities.zoom.max);
+        }
+        else if (event.clientX <= window.innerWidth * 0.5 && capabilities.zoom) {
+            currentZoom = Math.max(currentZoom - 1, capabilities.zoom.min);
+        }
+        videoTrack.applyConstraints({
+            advanced: [{zoom: currentZoom}]
+        });
     }
 });  
 
