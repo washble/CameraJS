@@ -1,4 +1,7 @@
-// Get the video stream
+/**
+ * Get the video stream
+ * Check capabilities Zoom
+ */ 
 let isMetaDataLoaded = false;
 let video = document.getElementById('video');
 let currentZoom = 1;
@@ -66,20 +69,34 @@ function photoDownload() {
     }, 'image/png');
 
     resetCanvas();
+
+    return true;
 }
 
-// Detect touch at the bottom of the screen
+/**
+ * Detect touch at the bottom of the screen
+ * Capture Zoom in and out 
+ */ 
 let touchCount = 0;
+let isDownloading = false;
 document.body.addEventListener('click', function(event) {
+    if(isDownloading) { 
+        isDownloading = false;
+        return; 
+    }
+    
     if (event.clientY > window.innerHeight * 0.5) {
         if(touchCount == 0) {
             takePhoto();
             touchCount++;
         } else {
+            isDownloading = true;
             photoDownload();
             touchCount = 0;
         }
+        console.log("click Bottom");
     } else {
+        console.log("click Top");
         const videoTrack = video.srcObject.getVideoTracks()[0];
         const capabilities = videoTrack.getCapabilities();
         if (event.clientX > window.innerWidth * 0.5 && capabilities.zoom) {
