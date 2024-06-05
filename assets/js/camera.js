@@ -69,8 +69,6 @@ function photoDownload() {
     }, 'image/png');
 
     resetCanvas();
-
-    return true;
 }
 
 /**
@@ -81,7 +79,6 @@ let touchCount = 0;
 let isDownloading = false;
 document.body.addEventListener('click', function(event) {
     if(isDownloading) { 
-        isDownloading = false;
         return; 
     }
 
