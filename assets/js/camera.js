@@ -78,7 +78,8 @@ function photoDownload() {
 let touchCount = 0;
 let isDownloading = false;
 document.body.addEventListener('click', function(event) {
-    if(isDownloading) { 
+    if(isDownloading) {
+        isDownloading = false;
         return; 
     }
 
