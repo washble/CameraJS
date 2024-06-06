@@ -5,7 +5,11 @@
 let isMetaDataLoaded = false;
 let video = document.getElementById('video');
 let currentZoom = 1;
-navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } })
+navigator.mediaDevices.getUserMedia({ video: { 
+    width: { ideal: 1920 }, 
+    height: { ideal: 1080 },
+    facingMode: { exact: "environment" }
+} })
 .then(function(stream) {
     video.srcObject = stream;
     video.play();
@@ -35,10 +39,10 @@ function takePhoto() {
     }
 
     if(video.videoWidth > 0 && video.videoHeight > 0) {
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
+        canvas.width = video.videoWidth * 2;
+        canvas.height = video.videoHeight * 2;
     
-        context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
     } else {
         console.log("Failed to get video size");
     }
