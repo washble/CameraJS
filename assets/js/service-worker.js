@@ -14,6 +14,8 @@ self.addEventListener('install', event => {
                 './assets/vendor/glightbox/css/glightbox.min.css',
                 './assets/vendor/swiper/swiper-bundle.min.css',
                 './assets/js/camera.js',
+                './assets/js/index.js',
+                './assets/js/main.js'
             ]);
         })
     );
