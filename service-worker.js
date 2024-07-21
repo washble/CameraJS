@@ -5,7 +5,6 @@ self.addEventListener('install', event => {
     event.waitUntil(
         caches.open('static-v1').then(cache => {
             return cache.addAll([
-                './',
                 './index.html',
                 './assets/css/style.css',
                 './assets/css/camera.css',
@@ -15,6 +14,8 @@ self.addEventListener('install', event => {
                 './assets/vendor/glightbox/css/glightbox.min.css',
                 './assets/vendor/swiper/swiper-bundle.min.css',
                 './assets/js/camera.js',
+                './assets/js/index.js',
+                './assets/js/main.js'
             ]);
         })
     );
@@ -24,7 +25,7 @@ self.addEventListener('fetch', event => {
     console.log('Fetch intercepted for:', event.request.url);
     event.respondWith(
         caches.match(event.request).then(response => {
-            return response || fetch(event.request);
+            return response || caches.match('./index.html') || fetch(event.request);
         })
     );
 });
