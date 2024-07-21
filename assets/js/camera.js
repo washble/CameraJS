@@ -3,7 +3,7 @@
  * Check capabilities Zoom
  */ 
 let isMetaDataLoaded = false;
-let video = document.getElementById('video');
+const video = document.getElementById('video');
 let currentZoom = 1;
 navigator.mediaDevices.getUserMedia({ video: { 
     width: { ideal: 1920 }, 
@@ -30,8 +30,8 @@ navigator.mediaDevices.getUserMedia({ video: {
 });
 
 // Function to take the photo
-let canvas = document.getElementById('canvas');
-let context = canvas.getContext('2d');
+const canvas = document.getElementById('canvas');
+const context = canvas.getContext('2d');
 function takePhoto() {
     if (!isMetaDataLoaded) {
         console.log("The metadata for the video has not yet been loaded");
@@ -61,11 +61,17 @@ function photoDownload() {
     canvas.toBlob(function(blob) {
         let binaryData = [];
         binaryData.push(blob);
-        let binaryPngData = new Blob(binaryData, {type: "image/png"});
-        let url = URL.createObjectURL(binaryPngData);
-        let downloadLink = document.createElement('a');
+        const binaryPngData = new Blob(binaryData, {type: "image/png"});
+        const url = URL.createObjectURL(binaryPngData);
+        const downloadLink = document.createElement('a');
         downloadLink.href = url;
-        downloadLink.download = `photo${photoCount++}.png`;
+
+        const now = new Date();
+        const formattedDate = now.toISOString().slice(0, 10).replace(/-/g, '');
+        const formattedTime = now.toTimeString().slice(0, 8).replace(/:/g, '');
+        const filename = `photo_${formattedDate}_${formattedTime}.png`;
+
+        downloadLink.download = filename;
         document.body.appendChild(downloadLink);
         downloadLink.click();
         document.body.removeChild(downloadLink);
