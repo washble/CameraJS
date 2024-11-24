@@ -6,8 +6,8 @@ let isMetaDataLoaded = false;
 const video = document.getElementById('video');
 let currentZoom = 1;
 navigator.mediaDevices.getUserMedia({ video: { 
-    width: { ideal: 1920 }, 
-    height: { ideal: 1080 },
+    width: { ideal: 2560 }, 
+    height: { ideal: 1920 },
     facingMode: { exact: "environment" }
 } })
 .then(function(stream) {
